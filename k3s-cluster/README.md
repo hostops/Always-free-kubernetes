@@ -20,10 +20,21 @@ The traffic is routed from the internet to the traefik ingress controller.
 
 In this example an extra variable is used:
 
+* k3s_nodes list of objects with properties:
+ - name = Name of instance
+ - shape  = Shape of instance
+ - image_id =  Id of image
+ - k3s_role = "server" or "agent"
+ - ocpus =  number of ocpus
+ - memory = available memory
+ - private_ip = private_ip of instance
+ - boot_volume_size_in_gbs = Boot volume size (min 50GiB
+ By default this is configured to use all available memory and ocpus. 2 Arm and 2 Amd instances.
+
+
 * k3s_server_private_ip, private ip address that will be associated to the k3s-server
 * fault_domains, this variable is a list of fault domains where our instance pool will deploy our instances
-* instance_pool_size, number of instances to launch in the instance pool. Number of k3s agents to deploy
-* k3s_token, token used to install the k3s cluster
+* k3s_token, token used to install the k3s cluster. Should match regex [a-z0-9]{29}-[a-z0-9]{22}
 * install_longhorn, boolean value, if true (default) will install [longhorn](https://longhorn.io/) block storage 
 * longhorn_release, longorn release version
 
@@ -181,3 +192,9 @@ instance-manager-e-ccb8666b                 1/1     Running            0        
 instance-manager-r-3b35070e                 1/1     Running            0          28m
 instance-manager-e-9d117ead                 1/1     Running            0          28m
 ```
+
+## Troubleshooting
+
+###### Resouce not found or forbidden
+Try changing image id: https://docs.oracle.com/en-us/iaas/images/ubuntu-2004/
+

@@ -1,3 +1,58 @@
+variable "k3s_nodes" {
+  type = list(object({
+    name = string
+    shape = string
+    image_id = string # https://docs.oracle.com/en-us/iaas/images/ubuntu-2004/
+    k3s_role = string
+    ocpus = string
+    memory_in_gbs = string
+    private_ip = string
+    boot_volume_size_in_gbs = string
+  }))
+  default = [
+    {
+      name = "server-1-arm"
+      shape = "VM.Standard.A1.Flex"
+      image_id = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaapzfowmk3dwyurhox53yx4eqkmwourxs2ujxgykiymgsw4xnmmkya" # ARM Ubuntu 20.04
+      memory_in_gbs = "12"
+      ocpus = "2"
+      private_ip = "10.0.0.100"
+      boot_volume_size_in_gbs = "50"
+      k3s_role = "server"
+    },
+    {
+      name = "agent-1-arm"
+      shape = "VM.Standard.A1.Flex"
+      image_id = "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaapzfowmk3dwyurhox53yx4eqkmwourxs2ujxgykiymgsw4xnmmkya" # ARM Ubuntu 20.04
+      memory_in_gbs = "12"
+      ocpus = "2"
+      private_ip = "10.0.0.101"
+      boot_volume_size_in_gbs = "50"
+      k3s_role = "agent"
+    },
+    {
+      name = "agent-2-amd"
+      shape = "VM.Standard.E2.1.Micro"
+      image_id= "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaadqrjjiunkzkf62ggllx56s3p5775gonlifl74d4ri3bykztb4bha" # AMD Ubuntu 20.04
+      memory_in_gbs = "1"
+      ocpus = "1"
+      private_ip = "10.0.0.102"
+      boot_volume_size_in_gbs = "50"
+      k3s_role = "agent"
+    },
+    {
+      name = "agent-3-amd"
+      shape = "VM.Standard.E2.1.Micro"
+      image_id= "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaadqrjjiunkzkf62ggllx56s3p5775gonlifl74d4ri3bykztb4bha" # AMD Ubuntu 20.04
+      memory_in_gbs = "1"
+      ocpus = "1"
+      private_ip = "10.0.0.103"
+      boot_volume_size_in_gbs = "50"
+      k3s_role = "agent"
+    }
+  ]
+}
+
 variable "compartment_ocid" {
 
 }
@@ -35,12 +90,8 @@ variable "fault_domains" {
   default = ["FAULT-DOMAIN-1", "FAULT-DOMAIN-2", "FAULT-DOMAIN-3"]
 }
 
-variable "PATH_TO_PUBLIC_KEY" {
+variable "path_to_public_key" {
   default = "~/.ssh/id_rsa.pub"
-}
-
-variable "os_image_id" {
-  default = "ocid1.image.oc1.eu-zurich-1.aaaaaaaam4u4w4dprotagbxx4glcmjtndbkunzs5kvz5qpkqybemlv4wds3a" # Ubuntu 20.04
 }
 
 variable "oci_core_vcn_cidr" {
@@ -56,11 +107,7 @@ variable "oci_core_subnet_cidr11" {
 }
 
 variable "k3s_server_private_ip" {
-  default = "10.0.0.50"
-}
-
-variable "instance_pool_size" {
-  default = 3
+  default = "10.0.0.100"
 }
 
 variable "tutorial_tag_key" {
@@ -72,11 +119,11 @@ variable "tutorial_tag_value" {
 }
 
 variable "my_public_ip_address" {
-  default = "<public_ip>"
+  default = "0.0.0.0/0"
 }
 
 variable "k3s_token" {
-  default = "2aaf122eed3409ds2c6fagfad4073-92dcdgade664d8c1c7f49z"
+  default = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxxxxxxxx"
 }
 
 variable "install_longhorn" {

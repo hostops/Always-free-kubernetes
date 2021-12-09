@@ -1,12 +1,8 @@
-output "k3s_server_ip" {
-  value = oci_core_instance.k3s_server.public_ip
+output "k3s_node_private_ip" {
+  value = oci_core_instance.k3s_node.*.private_ip
 }
-
-output "k3s_agents_ips" {
-  depends_on = [
-    data.oci_core_instance_pool_instances.k3s_agents_instances,
-  ]
-  value = data.oci_core_instance.k3s_agents_instances_ips.*.public_ip
+output "k3s_node_public_ip" {
+  value = oci_core_instance.k3s_node.*.public_ip
 }
 
 output "lb_ip" {

@@ -1,9 +1,13 @@
-[![GitHub issues](https://img.shields.io/github/issues/garutilorenzo/oracle-cloud-terraform-examples)](https://github.com/garutilorenzo/oracle-cloud-terraform-examples/issues)
-![GitHub](https://img.shields.io/github/license/garutilorenzo/oracle-cloud-terraform-examples)
-[![GitHub forks](https://img.shields.io/github/forks/garutilorenzo/oracle-cloud-terraform-examples)](https://github.com/garutilorenzo/oracle-cloud-terraform-examples/network)
-[![GitHub stars](https://img.shields.io/github/stars/garutilorenzo/oracle-cloud-terraform-examples)](https://github.com/garutilorenzo/oracle-cloud-terraform-examples/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/hostops/always-free-kubernetes)](https://github.com/hostops/always-free-kubernetes/issues)
+![GitHub](https://img.shields.io/github/license/hostops/always-free-kubernetes)
+[![GitHub forks](https://img.shields.io/github/forks/hostops/always-free-kubernetes)](https://github.com/hostops/always-free-kubernetes/network)
+[![GitHub stars](https://img.shields.io/github/stars/hostops/always-free-kubernetes)](https://github.com/hostops/always-free-kubernetes/stargazers)
 
-# Oracle Cloud terraform examples
+# Always free  kubernetes
+This repository is a fork of https://github.com/garutilorenzo/oracle-cloud-terraform-examples.
+Modifications here allow you to also use free arm resources.
+
+Because free storage limit is 200GiB and boot volume should be greater than 50GiB we can have maximum 4 instances. Default configuration is 2 arm and 2 amd instances which allows us to use all of free memory and ocpus.
 
 Deploy Oracle Cloud services using Oracle [always free](https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm) resources
 
